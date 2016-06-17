@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using UnityEngine.UI;
 
 public class Zutat {
     
@@ -14,7 +13,7 @@ public class Zutat {
     /*
     Uebergib der Funktion eine ID alias enum einer beliebigen Zutat und du bekommst den ausgeschriebenen Namen als String zurueck
     */
-    public string getName(ID id)
+    public static string getName(ID id)
     {
         if (id == ID.Tomate)
             return "Tomate";
@@ -24,5 +23,13 @@ public class Zutat {
             return "Kartoffel";
         //Entsprechend weiterfuehren!
         return "Wenn du diesen Fehler ausloest bist du zu dumm zum ....!";
+    }
+
+    /*
+    WIP
+    */
+    public static Image getImage(ID id)
+    {
+        return null;
     }
 }
