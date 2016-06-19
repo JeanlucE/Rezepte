@@ -11,6 +11,14 @@ public class Zutat
         //Weitere Zutaten durch Komma getrennt einfuegen
     }
 
+    public enum Growthstage
+    {
+        seeded,
+        small,
+        large,
+        grown
+    }
+
     /*
     Uebergib der Funktion eine ID alias enum einer beliebigen Zutat und du bekommst den ausgeschriebenen Namen als String zurueck
     */
@@ -28,5 +36,13 @@ public class Zutat
             obj.AddComponent<Image>();
         //z_ fuer Eindeutigkeit mit den Rezepten
         obj.GetComponent<Image>().sprite = Resources.Load<Sprite>("z_"+ id.ToString());
+    }
+
+    public static void getImage(GameObject obj, ID id, Growthstage gs)
+    {
+        if (obj.GetComponent<Image>() == null)
+            obj.AddComponent<Image>();
+        //z_ fuer Eindeutigkeit mit den Rezepten
+        obj.GetComponent<Image>().sprite = Resources.Load<Sprite>("z_" + id.ToString() + "_" + gs.ToString());
     }
 }
