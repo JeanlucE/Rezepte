@@ -64,17 +64,38 @@ public class Rezept
         obj.GetComponent<Image>().sprite = Resources.Load<Sprite>("r_" + id.ToString());
     }
 
+    public static ID getNextQuest(List<Zutat.ID> list)
+    {
+        List<Rezept> rezepte = getRezepte();
+        Rezept best = new Rezept(ID.Bratkartoffeln, null, ""); // Dummy
+        int match = 0;
+        foreach(Rezept r in rezepte)
+        {
+            int mv = getMatchValue(list, r);
+            if(match < mv)
+            {
+                float prob = (mv - match * 1.0f) / (mv - match + 0.5f);
+                if( Random.value > prob)
+                {
+                    match = mv;
+                    best = r;
+                }
+            }
+        }
+        return best.id;
+    }
+
     /*
     WIP
     */
-    private static int getMatchValue(List<Tupel> felder, Rezept r)
+    private static int getMatchValue(List<Zutat.ID> felder, Rezept r)
     {
         int value = 0;
-        foreach (Tupel t in felder)
+        foreach (Zutat.ID t in felder)
         {
             foreach (Tupel v in r.zutaten)
             {
-                if (t == v)
+                if (t == v.key)
                 {
                     value++;
                     break;
