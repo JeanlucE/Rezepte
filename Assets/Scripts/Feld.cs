@@ -9,8 +9,9 @@ public class Feld : MonoBehaviour {
     public Sprite OvergrownSprite;
     public Sprite FreeSprite;
 
-
     private State state;
+    private Pflanze pflanze;
+    private float TimeOfNextGrowthStage;
 
     public enum State
     {
@@ -22,11 +23,13 @@ public class Feld : MonoBehaviour {
         if (Overgrown)
         {
             state = State.Overgrown;
+            //set sprite of overgrown field
             DebugText("$" + CostToClear);
         }
         else
         {
             state = State.Free;
+            //set sprite of free field
             DebugText("Free");
         }
 
@@ -35,8 +38,33 @@ public class Feld : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        switch (state)
+        {
+            case State.Overgrown:
+                break;
+
+            case State.Free:
+                break;
+
+            case State.Planted:
+                if (!pflanze.Done())
+                {
+                    if (TimeOfNextGrowthStage <= Time.time)
+                    {
+                        pflanze.Grow();
+                        TimeOfNextGrowthStage = Time.time + pflanze.TimeUntilNextState();
+                        //set sprite of appropriate growth stage
+                        DebugText(pflanze.GetDebugText() + " " + (int)pflanze.GetGrowthStage());
+                    }
+                }
+                else
+                {
+                    //done growing
+                    DebugText(pflanze.GetDebugText() + " Done");
+                }
+                break;
+        }
+    }
 
     public void OnClick()
     {
@@ -47,6 +75,7 @@ public class Feld : MonoBehaviour {
                 Inventar.Instance.ChangeMoney(-CostToClear);
                 state = State.Free;
 
+                //set sprite of free field
                 DebugText("Free");
                 break;
 
@@ -54,14 +83,30 @@ public class Feld : MonoBehaviour {
                 Plant();
                 state = State.Planted;
 
-                DebugText("Planted");
+                DebugText(pflanze.GetDebugText() + " " + (int)pflanze.GetGrowthStage());
+                break;
+
+            case State.Planted:
+                if (pflanze.Done())
+                {
+                    state = State.Free;
+
+                    //set sprite of free field
+                    DebugText("Free");
+                }
                 break;
         }
     }
 
     private void Plant()
     {
+        Zutat.ID[] zutaten = (Zutat.ID[])System.Enum.GetValues(typeof(Zutat.ID));
+        Zutat.ID z = zutaten[Random.Range(0, zutaten.Length - 1)];
 
+        pflanze = new Pflanze(z);
+        TimeOfNextGrowthStage = Time.time + pflanze.TimeUntilNextState();
+
+        //set sprite of seeded plant
     }
 
     private void DebugText(string content)

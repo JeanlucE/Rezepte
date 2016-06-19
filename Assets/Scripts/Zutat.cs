@@ -44,4 +44,45 @@ public class Zutat
         //z_ fuer Eindeutigkeit mit den Rezeptenui
         obj.GetComponent<Image>().sprite = Resources.Load<Sprite>("z_" + id.ToString() + "_" + gs.ToString());
     }
+
+    public static float getGrowthTimeInSeconds(Zutat.ID zutat, Growthstage stage)
+    {
+        switch (zutat)
+        {
+            case Zutat.ID.Tomate:
+                switch (stage)
+                {
+                    case Growthstage.seeded:
+                        return 2;
+                    case Growthstage.growing:
+                        return 2;
+                    default:
+                        return 0;
+                }
+                
+            case Zutat.ID.Gurke:
+                switch (stage)
+                {
+                    case Growthstage.seeded:
+                        return 2.5f;
+                    case Growthstage.growing:
+                        return 5;
+                    default:
+                        return 0;
+                }
+
+            case Zutat.ID.Kartoffel:
+                switch (stage)
+                {
+                    case Growthstage.seeded:
+                        return 5;
+                    case Growthstage.growing:
+                        return 10;
+                    default:
+                        return 0;
+                }
+            default:
+                return 0;
+        }
+    }
 }
