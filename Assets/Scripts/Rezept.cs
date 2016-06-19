@@ -37,9 +37,9 @@ public class Rezept
             zutaten.Clear();
 
             //Hier weitere Rezepte hinzufuegen
-            //1. Zutaten mit beliebiger Menge auffuellen. Bitte jede Zutat nur einmalig. Die mitgelieferte Zahl ist die Anzahl
-            //2. Rezept erstellen mit Zutaten, Kochanleitung
-            //3. Enum fuer das Rezept sowie String in getName hinzufuegen
+            //1. Enum hinzufuegen
+            //2. Zutaten mit beliebiger Menge auffuellen. Bitte jede Zutat nur einmalig. Die mitgelieferte Zahl ist die Anzahl
+            //3. Rezept erstellen mit Zutaten, Kochanleitung
             //4. Zutaten leeren und von vorn das Ganze
         }
         return rezepte;
@@ -60,7 +60,7 @@ public class Rezept
     {
         if (obj.GetComponent<Image>() == null)
             obj.AddComponent<Image>();
-        //z_ fuer eindeutigkeit mit den Rezepten
+        //z_ fuer Eindeutigkeit mit den Zutaten
         obj.GetComponent<Image>().sprite = Resources.Load<Sprite>("r_" + id.ToString());
     }
 

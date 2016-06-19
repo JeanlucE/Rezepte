@@ -26,7 +26,7 @@ public class Zutat
     {
         if (obj.GetComponent<Image>() == null)
             obj.AddComponent<Image>();
-        //z_ fuer eindeutigkeit mit den Rezepten
+        //z_ fuer Eindeutigkeit mit den Rezepten
         obj.GetComponent<Image>().sprite = Resources.Load<Sprite>("z_"+ id.ToString());
     }
 }
