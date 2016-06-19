@@ -38,7 +38,7 @@ public class Rezept
 
             //Hier weitere Rezepte hinzufuegen
             //1. Zutaten mit beliebiger Menge auffuellen. Bitte jede Zutat nur einmalig. Die mitgelieferte Zahl ist die Anzahl
-            //2. Rezept erstellen mit Zutaten, Kochanleitung und evt Bild
+            //2. Rezept erstellen mit Zutaten, Kochanleitung
             //3. Enum fuer das Rezept sowie String in getName hinzufuegen
             //4. Zutaten leeren und von vorn das Ganze
         }
@@ -50,12 +50,7 @@ public class Rezept
     */
     public static string getName(ID id)
     {
-        if (id == ID.Gurkensalat)
-            return "Gurkensalat";
-        if (id == ID.Bratkartoffeln)
-            return "Bratkartoffeln";
-        //Entsprechend weiterfuehren!
-        return "Wenn du diesen Fehler ausloest bist du zu dumm zum ....!";
+        return id.ToString();
     }
 
     /*
@@ -66,7 +61,7 @@ public class Rezept
         if (obj.GetComponent<Image>() == null)
             obj.AddComponent<Image>();
         //z_ fuer eindeutigkeit mit den Rezepten
-        obj.GetComponent<Image>().sprite = Resources.Load<Sprite>("r_" + getName(id));
+        obj.GetComponent<Image>().sprite = Resources.Load<Sprite>("r_" + id.ToString());
     }
 
     /*

@@ -16,14 +16,7 @@ public class Zutat
     */
     public static string getName(ID id)
     {
-        if (id == ID.Tomate)
-            return "Tomate";
-        if (id == ID.Gurke)
-            return "Gurke";
-        if (id == ID.Kartoffel)
-            return "Kartoffel";
-        //Entsprechend weiterfuehren!
-        return "Wenn du diesen Fehler ausloest bist du zu dumm zum ....!";
+        return id.ToString();
     }
 
     /*
@@ -34,6 +27,6 @@ public class Zutat
         if (obj.GetComponent<Image>() == null)
             obj.AddComponent<Image>();
         //z_ fuer eindeutigkeit mit den Rezepten
-        obj.GetComponent<Image>().sprite = Resources.Load<Sprite>("z_"+ getName(id));
+        obj.GetComponent<Image>().sprite = Resources.Load<Sprite>("z_"+ id.ToString());
     }
 }
