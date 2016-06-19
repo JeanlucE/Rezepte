@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
-public class Rezept {
+public class Rezept
+{
 
     private static List<Rezept> rezepte;
 
     public ID id;
     public List<Tupel> zutaten;
     public string text;
-    public string imagePath;
 
     public enum ID
     {
@@ -16,12 +18,11 @@ public class Rezept {
         //Weitere Rezepte durch Komma getrennt einfuegen
     }
 
-    public Rezept(ID i, List<Tupel> z, string t, string im)
+    public Rezept(ID i, List<Tupel> z, string t)
     {
         id = i;
         zutaten = new List<Tupel>(z);
         text = t;
-        imagePath = im;
     }
 
     public static List<Rezept> getRezepte()
@@ -32,7 +33,7 @@ public class Rezept {
             List<Tupel> zutaten = new List<Tupel>();
 
             zutaten.Add(new Tupel(Zutat.ID.Gurke, 1));
-            rezepte.Add(new Rezept(ID.Gurkensalat, zutaten, "Einfacher Gurkensalat:\n Man nehme ... blabliblub Kochanleitung", "D:\\eine\\Mudda\\hat\\nen\\Bild\\gemacht.jpg"));
+            rezepte.Add(new Rezept(ID.Gurkensalat, zutaten, "Einfacher Gurkensalat:\n Man nehme ... blabliblub Kochanleitung"));
             zutaten.Clear();
 
             //Hier weitere Rezepte hinzufuegen
@@ -55,6 +56,17 @@ public class Rezept {
             return "Bratkartoffeln";
         //Entsprechend weiterfuehren!
         return "Wenn du diesen Fehler ausloest bist du zu dumm zum ....!";
+    }
+
+    /*
+    Uebergebt dieser funktion ein GUI Element. Diesem wird dann, wenn nicht schon vorhanden ein Image hinzugefuegt und dann dieses Bild mit einem der id entsprechenden belegt
+    */
+    public static void getImage(GameObject obj, ID id)
+    {
+        if (obj.GetComponent<Image>() == null)
+            obj.AddComponent<Image>();
+        //z_ fuer eindeutigkeit mit den Rezepten
+        obj.GetComponent<Image>().sprite = Resources.Load<Sprite>("r_" + getName(id));
     }
 
     /*
