@@ -14,8 +14,7 @@ public class Zutat
     public enum Growthstage
     {
         seeded,
-        small,
-        large,
+        growing,
         grown
     }
 
@@ -42,7 +41,7 @@ public class Zutat
     {
         if (obj.GetComponent<Image>() == null)
             obj.AddComponent<Image>();
-        //z_ fuer Eindeutigkeit mit den Rezepten
+        //z_ fuer Eindeutigkeit mit den Rezeptenui
         obj.GetComponent<Image>().sprite = Resources.Load<Sprite>("z_" + id.ToString() + "_" + gs.ToString());
     }
 }

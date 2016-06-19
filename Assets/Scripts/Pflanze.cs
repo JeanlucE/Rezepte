@@ -3,12 +3,9 @@ using System.Collections;
 
 public class Pflanze : MonoBehaviour {
 
-    private GrowthState state = GrowthState.ONE;
+    private Zutat.Growthstage state = Zutat.Growthstage.growing;
 
-    public enum GrowthState
-    {
-        ONE, TWO, THREE
-    }
+
 
 	// Use this for initialization
 	void Start () {
