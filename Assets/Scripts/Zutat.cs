@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Zutat {
-    
+public class Zutat
+{
     public enum ID
     {
         Tomate,
@@ -27,7 +27,6 @@ public class Zutat {
     }
 
     /*
-    WIP
     Uebergebt dieser funktion ein GUI Element. Diesem wird dann, wenn nicht schon vorhanden ein Image hinzugefuegt und dann dieses Bild mit einem der id entsprechenden belegt
     */
     public static void getImage(GameObject obj, ID id)
@@ -35,6 +34,6 @@ public class Zutat {
         if (obj.GetComponent<Image>() == null)
             obj.AddComponent<Image>();
         //z_ fuer eindeutigkeit mit den Rezepten
-        obj.GetComponent<Image>().sprite = Resources.Load<Sprite>("z_"+ getName(id) +  ".png");
+        obj.GetComponent<Image>().sprite = Resources.Load<Sprite>("z_"+ getName(id));
     }
 }
