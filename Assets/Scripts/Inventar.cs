@@ -9,6 +9,8 @@ public class Inventar : MonoBehaviour {
     
     private List<Tupel> inventory = new List<Tupel>();
     private float money;
+    public GameObject gameMode;
+    public GameObject iventoryMode;
 
 	// Use this for initialization
 	void Start () {
@@ -110,10 +112,11 @@ public class Inventar : MonoBehaviour {
     {
         return money;
     }
-
+    // Deaktivates the Game canvas and starts the inventory canvas
     public void OpenInventory()
     {
-        Debug.Log("Inventory Opened");
+        iventoryMode.active = true;
+        gameMode.active = false;
     }
 	
 	// Update is called once per frame
