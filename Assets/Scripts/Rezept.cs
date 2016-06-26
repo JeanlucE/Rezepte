@@ -13,7 +13,7 @@ public class Rezept
 
     public enum ID
     {
-        Gurkensalat,
+        Tomatensalat,
         Bratkartoffeln
         //Weitere Rezepte durch Komma getrennt einfuegen
     }
@@ -32,8 +32,8 @@ public class Rezept
             rezepte = new List<Rezept>();
             List<Tupel> zutaten = new List<Tupel>();
 
-            zutaten.Add(new Tupel(Zutat.ID.Gurke, 1));
-            rezepte.Add(new Rezept(ID.Gurkensalat, zutaten, "Einfacher Gurkensalat:\n Man nehme ... blabliblub Kochanleitung"));
+            zutaten.Add(new Tupel(Zutat.ID.Tomate, 1));
+            rezepte.Add(new Rezept(ID.Tomatensalat, zutaten, "Einfacher Gurkensalat:\n Man nehme ... blabliblub Kochanleitung"));
             zutaten.Clear();
 
             //Hier weitere Rezepte hinzufuegen

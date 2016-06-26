@@ -6,8 +6,10 @@ public class Zutat
     public enum ID
     {
         Tomate,
-        Gurke,
-        Kartoffel
+        Brokkoli,
+        Pilz,
+        Suesskartoffel
+
         //Weitere Zutaten durch Komma getrennt einfuegen
     }
 
@@ -60,7 +62,7 @@ public class Zutat
                         return 0;
                 }
                 
-            case Zutat.ID.Gurke:
+            case Zutat.ID.Brokkoli:
                 switch (stage)
                 {
                     case Growthstage.seeded:
@@ -71,7 +73,17 @@ public class Zutat
                         return 0;
                 }
 
-            case Zutat.ID.Kartoffel:
+            case Zutat.ID.Pilz:
+                switch (stage)
+                {
+                    case Growthstage.seeded:
+                        return 5;
+                    case Growthstage.growing:
+                        return 10;
+                    default:
+                        return 0;
+                }
+            case Zutat.ID.Suesskartoffel:
                 switch (stage)
                 {
                     case Growthstage.seeded:
