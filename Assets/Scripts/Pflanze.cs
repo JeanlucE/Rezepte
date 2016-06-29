@@ -18,6 +18,11 @@ public class Pflanze
         return state;
     }
 
+    public void SetImage(GameObject gameObject)
+    {
+        Zutat.getImage(gameObject, zutat, GetGrowthStage());
+    }
+
     public void Grow()
     {
         switch (state)

@@ -24,12 +24,14 @@ public class Feld : MonoBehaviour {
         {
             state = State.Overgrown;
             //set sprite of overgrown field
+            GetComponent<Image>().sprite = OvergrownSprite;
             DebugText("$" + CostToClear);
         }
         else
         {
             state = State.Free;
             //set sprite of free field
+            GetComponent<Image>().sprite = FreeSprite;
             DebugText("Free");
         }
 
@@ -54,12 +56,14 @@ public class Feld : MonoBehaviour {
                         pflanze.Grow();
                         TimeOfNextGrowthStage = Time.time + pflanze.TimeUntilNextState();
                         //set sprite of appropriate growth stage
+                        pflanze.SetImage(this.gameObject);
                         DebugText(pflanze.GetDebugText() + " " + (int)pflanze.GetGrowthStage());
                     }
                 }
                 else
                 {
                     //done growing
+                    pflanze.SetImage(this.gameObject);
                     DebugText(pflanze.GetDebugText() + " Done");
                 }
                 break;
@@ -76,6 +80,7 @@ public class Feld : MonoBehaviour {
                 state = State.Free;
 
                 //set sprite of free field
+                GetComponent<Image>().sprite = FreeSprite;
                 DebugText("Free");
                 break;
 
@@ -83,6 +88,7 @@ public class Feld : MonoBehaviour {
                 Plant();
                 state = State.Planted;
 
+               
                 DebugText(pflanze.GetDebugText() + " " + (int)pflanze.GetGrowthStage());
                 break;
 
@@ -90,7 +96,7 @@ public class Feld : MonoBehaviour {
                 if (pflanze.Done())
                 {
                     state = State.Free;
-
+                    GetComponent<Image>().sprite = FreeSprite;
                     //set sprite of free field
                     DebugText("Free");
                 }
