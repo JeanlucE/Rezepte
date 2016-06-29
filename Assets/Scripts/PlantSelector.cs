@@ -21,7 +21,10 @@ public class PlantSelector : MonoBehaviour {
             Instance = this;
 
         canvasGroup = GetComponent<CanvasGroup>();
-	}
+        canvasGroup.alpha = 0;
+        GetComponent<RectTransform>().anchoredPosition = UnseenPoint;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
