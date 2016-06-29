@@ -285,30 +285,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 11496296, guid: 21e6aee8d2087dd47bc03fca2d208f2a, type: 2}
-      propertyPath: Overgrown
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11413006, guid: 21e6aee8d2087dd47bc03fca2d208f2a, type: 2}
-      propertyPath: m_FontData.m_FontSize
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 11413006, guid: 21e6aee8d2087dd47bc03fca2d208f2a, type: 2}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11413006, guid: 21e6aee8d2087dd47bc03fca2d208f2a, type: 2}
-      propertyPath: m_FontData.m_HorizontalOverflow
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22494166, guid: 21e6aee8d2087dd47bc03fca2d208f2a, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22494166, guid: 21e6aee8d2087dd47bc03fca2d208f2a, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 110696, guid: 21e6aee8d2087dd47bc03fca2d208f2a, type: 2}
       propertyPath: m_Name
       value: Feld (5)
@@ -1807,6 +1783,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5982176b43a0003428f88d53f2227368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectorOffset: {x: 0, y: 150}
+  FadeDelay: 2.5
+  NormalFadeOutTime: 2
+  QuickFadeOutTime: 0.6
 --- !u!225 &949102556
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1999,6 +1979,10 @@ Prefab:
     - target: {fileID: 22494166, guid: 21e6aee8d2087dd47bc03fca2d208f2a, type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496296, guid: 21e6aee8d2087dd47bc03fca2d208f2a, type: 2}
+      propertyPath: Overgrown
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21e6aee8d2087dd47bc03fca2d208f2a, type: 2}

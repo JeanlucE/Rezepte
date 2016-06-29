@@ -160,9 +160,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CostToClear: 20
-  Overgrown: 0
-  OvergrownSprite: {fileID: 21300000, guid: ec804ddd28d78e147b91d2e51af5d3eb, type: 3}
-  FreeSprite: {fileID: 21300000, guid: 10d04de7edd24b142b629011877c348e, type: 3}
+  Overgrown: 1
+  OvergrownSprite: {fileID: 21300000, guid: d77d0b1a99f04724491dc90811052f31, type: 3}
+  FreeSprite: {fileID: 21300000, guid: 0395446eda93a154187eb2839e4fbff8, type: 3}
 --- !u!222 &22234130
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -209,7 +209,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.81700003, y: 0.25827473}
   m_AnchorMax: {x: 0.81700003, y: 0.25827473}
-  m_AnchoredPosition: {x: -77.5, y: 72.5}
+  m_AnchoredPosition: {x: -721.5, y: 229.34}
   m_SizeDelta: {x: 151, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &100100000
