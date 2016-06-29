@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Feld : MonoBehaviour {
+
+    //static list of all fields
+    public static List<Feld> AllFelder;
 
     public float CostToClear;
     public bool Overgrown;
@@ -20,6 +24,14 @@ public class Feld : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        if(AllFelder == null)
+        {
+            AllFelder = new List<Feld>();
+        }
+
+        AllFelder.Add(this);
+        
+
         if (Overgrown)
         {
             state = State.Overgrown;
@@ -99,26 +111,34 @@ public class Feld : MonoBehaviour {
                     GetComponent<Image>().sprite = FreeSprite;
                     //set sprite of free field
                     DebugText("Free");
+
+                    Inventar.Instance.Add(pflanze.GetResult());
                 }
                 break;
         }
     }
 
+    public Zutat.ID GetZutatID()
+    {
+        return pflanze.GetZutatID();
+    }
+
     private void Plant()
     {
         Zutat.ID[] zutaten = (Zutat.ID[])System.Enum.GetValues(typeof(Zutat.ID));
-        Zutat.ID z = zutaten[Random.Range(0, zutaten.Length - 1)];
+        Zutat.ID z = zutaten[Random.Range(0, zutaten.Length)];
 
         pflanze = new Pflanze(z);
         TimeOfNextGrowthStage = Time.time + pflanze.TimeUntilNextState();
 
         //set sprite of seeded plant
+        pflanze.SetImage(this.gameObject);
     }
 
     private void DebugText(string content)
     {
         Text t = GetComponentInChildren<Text>();
         if (t)
-            t.text = content;
+            t.text = "";
     }
 }

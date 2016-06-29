@@ -13,6 +13,11 @@ public class Pflanze
         state = Zutat.Growthstage.seeded;
     }
 
+    public Zutat.ID GetZutatID()
+    {
+        return zutat;
+    }
+
     public Zutat.Growthstage GetGrowthStage()
     {
         return state;
@@ -21,6 +26,11 @@ public class Pflanze
     public void SetImage(GameObject gameObject)
     {
         Zutat.getImage(gameObject, zutat, GetGrowthStage());
+    }
+
+    public Tupel GetResult()
+    {
+        return new Tupel(zutat, Zutat.GetResultAmount(zutat));
     }
 
     public void Grow()

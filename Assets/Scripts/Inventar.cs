@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Inventar : MonoBehaviour {
     public static Inventar Instance;
@@ -9,15 +10,19 @@ public class Inventar : MonoBehaviour {
     
     private List<Tupel> inventory = new List<Tupel>();
     private float money;
-    public GameObject gameMode;
-    public GameObject iventoryMode;
+    private bool InventoryChanged;
+    public GameObject gameCanvas;
+    public GameObject inventoryCanvas;
 
+    public event EventHandler InventoryChangedEvent;
+    
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         if (Instance == null)
             Instance = this;
 
         money = StartingMoney;
+        InventoryChanged = true;
 	}
 
     //adds ingredients to inventory
@@ -33,12 +38,14 @@ public class Inventar : MonoBehaviour {
             if(invTupel.key == t.key)
             {
                 invTupel.value += t.value;
+                InventoryChanged = true;
                 return;
             }
         }
 
         //ingredient doesnt exist yet, so add it
         inventory.Add(t);
+        InventoryChanged = true;
     }
 
     //checks if all ingredients of a recipe are available
@@ -87,12 +94,29 @@ public class Inventar : MonoBehaviour {
         {
             if(inventory[i].key == t.key)
             {
-                inventory.RemoveAt(i);
+                inventory[i].value -= t.value;
+
+                if(inventory[i].value <= 0)
+                    inventory.RemoveAt(i);
+
+                InventoryChanged = true;
                 break;
             }
         }
 
         return true;
+    }
+
+    public List<Tupel> GetInventory()
+    {
+        List<Tupel> l = new List<Tupel>(inventory.Count);
+        foreach(Tupel t in inventory)
+        {
+            Tupel tupelCopy = new Tupel(t.key, t.value);
+            l.Add(tupelCopy);
+        }
+
+        return l;
     }
 
     //set the money value directly
@@ -115,12 +139,22 @@ public class Inventar : MonoBehaviour {
     // Deaktivates the Game canvas and starts the inventory canvas
     public void OpenInventory()
     {
-        iventoryMode.active = true;
-        gameMode.active = false;
+        inventoryCanvas.SetActive(true);
+        gameCanvas.SetActive(false);
     }
 	
+    public void CloseInventory()
+    {
+        inventoryCanvas.SetActive(false);
+        gameCanvas.SetActive(true);
+    }
+
 	// Update is called once per frame
 	void Update () {
-	
+        if (InventoryChanged)
+        {
+            InventoryChangedEvent(null, EventArgs.Empty);
+            InventoryChanged = false;
+        }
 	}
 }

@@ -17,7 +17,8 @@ public class Zutat
     {
         seeded,
         growing,
-        grown
+        grown,
+        inventory
     }
 
     /*
@@ -25,7 +26,13 @@ public class Zutat
     */
     public static string getName(ID id)
     {
-        return id.ToString();
+        switch (id)
+        {
+            case ID.Suesskartoffel:
+                return "Süßkartoffel";
+            default:
+                return id.ToString();
+        }
     }
 
     /*
@@ -93,6 +100,27 @@ public class Zutat
                     default:
                         return 0;
                 }
+            default:
+                return 0;
+        }
+    }
+
+    public static int GetResultAmount(Zutat.ID zutat)
+    {
+        switch (zutat)
+        {
+            case Zutat.ID.Tomate:
+                return 2;
+
+            case Zutat.ID.Brokkoli:
+                return 3;
+
+            case Zutat.ID.Pilz:
+                return 3;
+
+            case Zutat.ID.Suesskartoffel:
+                return 2;
+
             default:
                 return 0;
         }
