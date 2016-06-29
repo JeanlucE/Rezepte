@@ -97,11 +97,12 @@ public class Feld : MonoBehaviour {
                 break;
 
             case State.Free:
-                Plant();
-                state = State.Planted;
-
+                //center on this field
+                PlantSelector.Instance.CenterOn(this);
+                //select zutat from selector
+                //selector calls Plant(Zutat.ID)
                
-                DebugText(pflanze.GetDebugText() + " " + (int)pflanze.GetGrowthStage());
+                //DebugText(pflanze.GetDebugText() + " " + (int)pflanze.GetGrowthStage());
                 break;
 
             case State.Planted:
@@ -123,16 +124,20 @@ public class Feld : MonoBehaviour {
         return pflanze.GetZutatID();
     }
 
-    private void Plant()
+    public void Plant(Zutat.ID ID)
     {
-        Zutat.ID[] zutaten = (Zutat.ID[])System.Enum.GetValues(typeof(Zutat.ID));
-        Zutat.ID z = zutaten[Random.Range(0, zutaten.Length)];
+        if (state != State.Free)
+            return;
+
+        Zutat.ID z = ID;
 
         pflanze = new Pflanze(z);
         TimeOfNextGrowthStage = Time.time + pflanze.TimeUntilNextState();
 
         //set sprite of seeded plant
         pflanze.SetImage(this.gameObject);
+
+        state = State.Planted;
     }
 
     private void DebugText(string content)

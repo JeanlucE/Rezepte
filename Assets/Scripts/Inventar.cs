@@ -153,7 +153,9 @@ public class Inventar : MonoBehaviour {
 	void Update () {
         if (InventoryChanged)
         {
-            InventoryChangedEvent(null, EventArgs.Empty);
+            if(InventoryChangedEvent != null)
+                InventoryChangedEvent(null, EventArgs.Empty);
+
             InventoryChanged = false;
         }
 	}
