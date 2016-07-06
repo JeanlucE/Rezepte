@@ -13,6 +13,8 @@ public class Inventoryfiller : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Inventar.Instance.InventoryChangedEvent += OnInventoryChanged;
+
+        OnInventoryChanged(null, EventArgs.Empty);
 	}
 
     private void OnInventoryChanged(object sender, EventArgs e)
