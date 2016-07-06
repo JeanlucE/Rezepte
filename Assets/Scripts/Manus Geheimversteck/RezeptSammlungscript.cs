@@ -13,7 +13,7 @@ public class RezeptSammlungscript : MonoBehaviour
     // Das Prefab eines Rezepts
     public Button prefab;
 
-
+    private Button[] button = new Button[Rezept.getRezepte().Count];
 
     public void backToMenu()
     {
@@ -21,9 +21,30 @@ public class RezeptSammlungscript : MonoBehaviour
         sammlung.SetActive(false);
     }
 
-    public void setRezepte()
+    public void setRezepte(string wort)
     {
+        for (int j=0;j<button.Length;j++)
+        {
+            if (button[j] != null)
+            {
+                Destroy(button[j].gameObject);
+            }
+        }
         System.Collections.Generic.List<Rezept> rez = Rezept.getRezepte();
+        if (!wort.Equals(""))
+        {
+            System.Collections.Generic.List<Rezept> rezNew = new System.Collections.Generic.List<Rezept>();
+            foreach (Rezept r in rez)
+            {
+                if ((r.id + "").Contains(wort))
+                {
+                    rezNew.Add(r);
+                }
+            }
+            rez = rezNew;
+
+        }
+
         int i = 0;
         foreach (Rezept r in rez)
         {
@@ -34,6 +55,7 @@ public class RezeptSammlungscript : MonoBehaviour
             game.GetComponent<RectTransform>().anchorMax = new Vector2(game.GetComponent<RectTransform>().anchorMax.x, game.GetComponent<RectTransform>().anchorMax.y - 0.1f * i);
             game.GetComponent<RectTransform>().anchorMin = new Vector2(game.GetComponent<RectTransform>().anchorMin.x, game.GetComponent<RectTransform>().anchorMin.y - 0.1f * i);
             game.GetComponentInChildren<Text>().text = r.id + "";
+            button[i] = game;
             i++;
         }
     }
@@ -43,7 +65,7 @@ public class RezeptSammlungscript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        setRezepte();
+        setRezepte("");
     }
 
     // Update is called once per frame
