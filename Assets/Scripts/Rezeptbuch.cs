@@ -37,10 +37,26 @@ public class Rezeptbuch : MonoBehaviour {
     public void CookRezept()
     {
         List<Tupel> z = Rezept.getRezept(currentQuest).zutaten;
+        List<Tupel> r = Inventar.Instance.GetInventory();
+        //Check
         foreach (Tupel t in z)
         {
-            if (!Inventar.Instance.Remove(t))
+            bool enthalten = false;
+            foreach (Tupel t2 in r)
+            {
+                if (t2.key == t.key && t2.value <= t.value)
+                    enthalten = true;
+            }
+            if(!enthalten)
+            {
+                Debug.Log("Nicht genug Zutaten");
                 return;
+            }
+        }
+        //Remove
+        foreach(Tupel t in z)
+        {
+            Inventar.Instance.Remove(t);
         }
         Inventar.Instance.ChangeMoney(10);
         if (Random.value < 0.5f)
