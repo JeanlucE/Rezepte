@@ -10,7 +10,7 @@ public class Inventar : MonoBehaviour {
     
     private List<Tupel> inventory = new List<Tupel>();
     private float money;
-    private bool InventoryChanged;
+    public bool InventoryChanged;
     public GameObject gameCanvas;
     public GameObject inventoryCanvas;
 

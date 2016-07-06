@@ -32,8 +32,12 @@ public class Rezept
             rezepte = new List<Rezept>();
             List<Tupel> zutaten = new List<Tupel>();
 
-            zutaten.Add(new Tupel(Zutat.ID.Tomate, 1));
-            rezepte.Add(new Rezept(ID.Tomatensalat, zutaten, "Einfacher Gurkensalat:\n Man nehme ... blabliblub Kochanleitung"));
+            zutaten.Add(new Tupel(Zutat.ID.Tomate, 4));
+            rezepte.Add(new Rezept(ID.Tomatensalat, zutaten, "Tomaten schneiden,\nZwiebeln schälen und schneiden,\nEssig und Öl dazu,\nMit Pfeffer und Salz abschmecken"));
+            zutaten.Clear();
+
+            zutaten.Add(new Tupel(Zutat.ID.Suesskartoffel, 2));
+            rezepte.Add(new Rezept(ID.Bratkartoffeln, zutaten, "Zwiebeln schneiden,\nZwiebeln andünsten,\nKartoffeln in Scheiben schneiden,\nKartoffeln goldbraun braten,\nmitSalz und Pfeffer abschmecken"));
             zutaten.Clear();
 
             //Hier weitere Rezepte hinzufuegen
@@ -103,5 +107,15 @@ public class Rezept
             }
         }
         return value;
+    }
+
+    public static Rezept getRezept(ID id)
+    {
+        foreach(Rezept r in rezepte)
+        {
+            if (r.id == id)
+                return r;
+        }
+        return null;
     }
 }

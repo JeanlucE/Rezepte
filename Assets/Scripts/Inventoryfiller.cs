@@ -6,6 +6,9 @@ using System;
 
 public class Inventoryfiller : MonoBehaviour {
     public List<RectTransform> ZutatenFrames;
+    public RectTransform RezeptTitel;
+    public RectTransform RezeptAnleitung;
+    public RectTransform RezeptZutaten;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +34,16 @@ public class Inventoryfiller : MonoBehaviour {
         {
             ZutatenFrames[i].gameObject.SetActive(false);
         }
+        RezeptTitel.GetComponentInChildren<Text>().text = Rezeptbuch.Instance.currentQuest.ToString();
+        RezeptAnleitung.GetComponentInChildren<Text>().text = Rezept.getRezept(Rezeptbuch.Instance.currentQuest).text;
+        List<Tupel> li = Rezept.getRezept(Rezeptbuch.Instance.currentQuest).zutaten;
+        string s = "";
+        foreach(Tupel t in li)
+        {
+            s += t.value + " " + t.key.ToString() + "(n)\n";
+        }
+        RezeptZutaten.GetComponentInChildren<Text>().text = s;
+        //Rezept.getImage(RezeptTitel.GetComponentInChildren<Image>().gameObject, Rezeptbuch.Instance.currentQuest);      WENN Art da ist auskommentieren
     }
 	
 	// Update is called once per frame
