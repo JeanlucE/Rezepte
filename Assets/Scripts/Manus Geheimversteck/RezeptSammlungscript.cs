@@ -40,6 +40,16 @@ public class RezeptSammlungscript : MonoBehaviour
                 {
                     rezNew.Add(r);
                 }
+                else
+                {
+                    foreach (Tupel t in r.zutaten)
+                    {
+                        if ((t.key + "").Contains(wort))
+                        {
+                            rezNew.Add(r);
+                        }
+                    }
+                }
             }
             rez = rezNew;
 
