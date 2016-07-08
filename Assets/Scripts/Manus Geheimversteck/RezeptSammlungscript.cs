@@ -65,6 +65,7 @@ public class RezeptSammlungscript : MonoBehaviour
             game.GetComponent<RectTransform>().anchorMax = new Vector2(game.GetComponent<RectTransform>().anchorMax.x, game.GetComponent<RectTransform>().anchorMax.y - 0.1f * i);
             game.GetComponent<RectTransform>().anchorMin = new Vector2(game.GetComponent<RectTransform>().anchorMin.x, game.GetComponent<RectTransform>().anchorMin.y - 0.1f * i);
             game.GetComponentInChildren<Text>().text = Rezept.getName(r.id) + "";
+            game.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
             button[i] = game;
             i++;
         }
