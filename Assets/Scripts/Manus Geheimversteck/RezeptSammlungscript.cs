@@ -36,7 +36,7 @@ public class RezeptSammlungscript : MonoBehaviour
             System.Collections.Generic.List<Rezept> rezNew = new System.Collections.Generic.List<Rezept>();
             foreach (Rezept r in rez)
             {
-                if ((r.id + "").Contains(wort))
+                if ((Rezept.getName(r.id) + "").Contains(wort))
                 {
                     rezNew.Add(r);
                 }
@@ -64,7 +64,7 @@ public class RezeptSammlungscript : MonoBehaviour
             game.GetComponent<RectTransform>().offsetMax = Vector2.zero;
             game.GetComponent<RectTransform>().anchorMax = new Vector2(game.GetComponent<RectTransform>().anchorMax.x, game.GetComponent<RectTransform>().anchorMax.y - 0.1f * i);
             game.GetComponent<RectTransform>().anchorMin = new Vector2(game.GetComponent<RectTransform>().anchorMin.x, game.GetComponent<RectTransform>().anchorMin.y - 0.1f * i);
-            game.GetComponentInChildren<Text>().text = r.id + "";
+            game.GetComponentInChildren<Text>().text = Rezept.getName(r.id) + "";
             button[i] = game;
             i++;
         }

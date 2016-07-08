@@ -11,10 +11,10 @@ public class Textscript : MonoBehaviour {
 
         foreach (Rezept r in rez)
         {
-            if (GetComponentInChildren<Text>().text.Equals(r.id + ""))
+            if (GetComponentInChildren<Text>().text.Equals(Rezept.getName(r.id) + ""))
             {
                 GameObject.Find("RezepteText").GetComponent<Text>().text = r.text;
-                GameObject.Find("RezepteUberschrift").GetComponent<Text>().text = r.id + "";
+                GameObject.Find("RezepteUberschrift").GetComponent<Text>().text = Rezept.getName(r.id) + "";
             }
         }
 
