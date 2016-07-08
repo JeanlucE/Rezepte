@@ -76,6 +76,7 @@ public class RezeptSammlungscript : MonoBehaviour
     void Start()
     {
         setRezepte("");
+        sammlung.SetActive(false);
     }
 
     // Update is called once per frame

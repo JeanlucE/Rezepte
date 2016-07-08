@@ -136,6 +136,13 @@ public class Inventar : MonoBehaviour {
     {
         return money;
     }
+    // Ends the game
+    public void Endgame()
+    {
+        Application.Quit();
+    }
+
+
     // Deaktivates the Game canvas and starts the inventory canvas
     public void OpenInventory()
     {
