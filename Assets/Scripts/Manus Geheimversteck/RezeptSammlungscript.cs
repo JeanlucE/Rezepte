@@ -36,7 +36,7 @@ public class RezeptSammlungscript : MonoBehaviour
             System.Collections.Generic.List<Rezept> rezNew = new System.Collections.Generic.List<Rezept>();
             foreach (Rezept r in rez)
             {
-                if ((Rezept.getName(r.id) + "").Contains(wort))
+                if ((Rezept.getName(r.id).ToLower() + "").Contains(wort.ToLower()))
                 {
                     rezNew.Add(r);
                 }
@@ -44,7 +44,7 @@ public class RezeptSammlungscript : MonoBehaviour
                 {
                     foreach (Tupel t in r.zutaten)
                     {
-                        if ((t.key + "").Contains(wort))
+                        if (((t.key + "").ToLower()).Contains(wort.ToLower()))
                         {
                             rezNew.Add(r);
                         }
