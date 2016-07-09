@@ -36,7 +36,7 @@ public class Rezeptbuch : MonoBehaviour {
 
     public void CookRezept()
     {
-        /*List<Tupel> z = Rezept.getRezept(currentQuest).zutaten;
+        List<Tupel> z = Rezept.getRezept(currentQuest).zutaten;
         bool checkRecipe = Inventar.Instance.CheckRecipe(Rezept.getRezept(currentQuest));
 
         if (checkRecipe)
@@ -57,22 +57,11 @@ public class Rezeptbuch : MonoBehaviour {
         {
             Debug.Log("Recipe not done");
         }
-        */
-        GetNextRecipe();
-        Inventar.Instance.InventoryChanged = true;
     }
 
     private void GetNextRecipe()
     {
-
         Inventar.Instance.ChangeMoney(10);
-        /*
-        if (Random.value < 0.5f)
-            currentQuest = Rezept.ID.Bratkartoffeln;
-        else
-            currentQuest = Rezept.ID.Tomatensalat;
-        */
-        //---------------------
         List<Tupel> inv = Inventar.Instance.GetInventory();
         List<Zutat.ID> zut = new List<Zutat.ID>();
         foreach(Tupel t in inv)
