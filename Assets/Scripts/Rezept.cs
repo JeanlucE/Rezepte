@@ -93,43 +93,69 @@ public class Rezept
 
     public static ID getNextQuest(List<Zutat.ID> list)
     {
-        List<Rezept> rezepte = getRezepte();
-        Rezept best = new Rezept(ID.Bratkartoffeln, null, ""); // Dummy
-        int match = 0;
-        foreach(Rezept r in rezepte)
+        int length = getRezepte().Count;
+        float[] matchValue = new float[length];
+        Rezept[] rezepte = new Rezept[length];
+        int i = 0;
+        foreach(Rezept r in getRezepte())
         {
-            int mv = getMatchValue(list, r);
-            if(match < mv)
+            rezepte[i] = r;
+            matchValue[i] = getMatchValue(r);
+            i++;
+        }
+        for (int t = 0; t < length - 1; t++) //Bubblesort
+        {
+            for (i = 0; i < length - 1; i++)
             {
-                float prob = (mv - match * 1.0f) / (mv - match + 0.5f);
-                if( Random.value > prob)
+                if (matchValue[i] < matchValue[i + 1])
                 {
-                    match = mv;
-                    best = r;
+                    //swap
+                    float puffer = matchValue[i];
+                    matchValue[i] = matchValue[i + 1];
+                    matchValue[i + 1] = puffer;
+                    Rezept r = rezepte[i];
+                    rezepte[i] = rezepte[i + 1];
+                    rezepte[i + 1] = r;
                 }
             }
         }
-        return best.id;
+        float all = 0;
+        for(i=0;i< length;i++)
+        {
+            all += matchValue[i];
+        }
+        float rand = Random.value;
+        float current = 0;
+        for(i=0;i< length;i++)
+        {
+            current += matchValue[i] / all;
+            if (rand <= current)
+                return rezepte[i].id;
+        }
+        return rezepte[length - 1].id;
     }
-
-    /*
-    WIP
-    */
-    private static int getMatchValue(List<Zutat.ID> felder, Rezept r)
+    
+    private static float getMatchValue(Rezept r)
     {
-        int value = 0;
-        foreach (Zutat.ID t in felder)
+        List<Tupel> inventar = Inventar.Instance.GetInventory();
+        int vorhanden = 0;
+        int gesamt = 0;
+        foreach(Tupel t in r.zutaten)
         {
-            foreach (Tupel v in r.zutaten)
+            gesamt += t.value;
+            foreach (Tupel t2 in inventar)
             {
-                if (t == v.key)
+                if (t.key == t2.key)
                 {
-                    value++;
-                    break;
+                    if (t.value < t2.value)
+                        vorhanden += t.value;
+                    else
+                        vorhanden += t2.value;
                 }
             }
         }
-        return value;
+        Debug.Log(r.id.ToString() + "       " + (vorhanden * 1.0f / gesamt));
+        return (vorhanden) * 1.0f / gesamt;
     }
 
     public static Rezept getRezept(ID id)
