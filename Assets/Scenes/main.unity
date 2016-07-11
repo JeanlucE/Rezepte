@@ -1506,7 +1506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 028ea087dfebe0644a01ad8665271d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingMoney: 190
+  StartingMoney: 0
   InventoryChanged: 0
   gameCanvas: {fileID: 1664476785}
   inventoryCanvas: {fileID: 2043570169}
